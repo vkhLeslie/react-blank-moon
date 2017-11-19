@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import pureRender from 'pure-render-decorator';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
-import { Header,template} from './common/mixin';
+import { Header,template} from '../Component/common/mixin';
 
 
 /**

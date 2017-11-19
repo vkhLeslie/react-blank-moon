@@ -4,7 +4,7 @@ import {History, Link } from 'react-router';
 import { connect } from 'react-redux';
 import { is, fromJS} from 'immutable';
 import {Tool} from '../Config/Tool';
-import {Header,template} from './common/mixin';
+import {Header,template} from '../Component/common/mixin';
 
 
 class Main extends Component {

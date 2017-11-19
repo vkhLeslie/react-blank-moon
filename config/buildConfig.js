@@ -1,4 +1,4 @@
-// see http://vuejs-templates.github.io/webpack for documentation.
+
 var path = require('path')
 var projectInfo = require('../CubeModule.json');
 function checkTime(i) {
