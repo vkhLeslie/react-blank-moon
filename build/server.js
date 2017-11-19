@@ -23,11 +23,11 @@ console.log(
   spinner.start()
   
   var assetsPath = path.join(buildConfig.buildTest.assetsRoot, buildConfig.buildTest.assetsSubDirectory)
-  rm('-rf', assetsPath)
-  rm('-rf', '*.zip', path.resolve(__dirname, '../*.zip'))
-  mkdir('-p', assetsPath)
-  //cp('-R', 'CubeModule.json', config.build.assetsRoot);
-  cp('-R', 'static/*', assetsPath)
+//   rm('-rf', assetsPath)
+//   rm('-rf', '*.zip', path.resolve(__dirname, '../*.zip'))
+//   mkdir('-p', assetsPath)
+//   //cp('-R', 'CubeModule.json', config.build.assetsRoot);
+//   cp('-R', 'static/*', assetsPath)
 
 
 var server = new WebpackDevServer(webpack(config), {

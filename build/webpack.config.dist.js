@@ -58,7 +58,13 @@ module.exports = {
             exclude: /^node_modules$/,
             loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图
-        }, {
+        }, 
+          {//代码检查
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader'
+          },
+        {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
             loaders: ['jsx', 'babel']

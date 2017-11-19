@@ -7,9 +7,9 @@ react + react-router + redux + immutable + less + ES6/7 + webpack + fetch + esli
 ## 运行项目（nodejs 6.0+）
 
 ```
- git clone https://github.com/vkhLeslie/reactMoon.git
+ git clone https://github.com/vkhLeslie/react-blank-moon.git
 
- cd reactMoon
+ cd react-blank-moon
 
  npm install
   

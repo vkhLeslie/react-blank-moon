@@ -21,7 +21,7 @@ function getZipName(type) {
 module.exports = {
   buildTest: {
     zipName: getZipName(1),
-    env: require('./prod.env'),
+    env:'development',
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
@@ -36,7 +36,7 @@ module.exports = {
   },
   build: {
     zipName: getZipName(2),
-    env: require('./prod.env'),
+    env:"production",
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
@@ -50,7 +50,7 @@ module.exports = {
     productionGzipExtensions: ['js', 'css']
   },
   dev: {
-    env: require('./dev.env'),
+    env: 'development',
     port: 8088,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
