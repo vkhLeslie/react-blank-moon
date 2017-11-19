@@ -35,7 +35,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 	progress: true,
 	stats: {
 		colors: true,
-	}
+	},
+	eslint: {
+        configFile: '../.eslintrc'
+    },
 }));
 
 //代理服务器

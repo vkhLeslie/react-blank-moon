@@ -1,12 +1,3 @@
-src/assets/*
-src/js/*
-src/platform/*
-src/router/*
-src/store/*
-src/App.vue
-src/main.js
-src/request.js
-node_modules/
-dist/
-config/
-build/
+build/*.js
+config/*.js
+src/assets/fonts/*.js

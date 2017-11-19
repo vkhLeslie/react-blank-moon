@@ -36,6 +36,9 @@ var server = new WebpackDevServer(webpack(config), {
 	stats: {
 		colors: true,
 	},
+	eslint: {
+        configFile: '../.eslintrc'
+    },
 	proxy
 });
 
