@@ -62,6 +62,12 @@ devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
 
+//将其他路由，全部返回index.html
+app.get('*', function(req, res) {
+	res.sendFile(__dirname + '../index.html')
+});
+
+
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)

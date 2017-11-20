@@ -8,7 +8,7 @@ const CONFIG = {
     serviceType: "serviceTest", //"deBug"：本地开发，"service"：在线服务，"serviceTest"：测试服务
     "transferProtocol": "https://",
     "version": "1.0.1",
-    "channel": 1, //1.美信 2.美+ 3.美的通
+    "channel": 1, //应用标识
     "platform": 1, //平台号
     "ok": 1,
     // 支持的所有多语言, 用逗号分隔, 如zh,en

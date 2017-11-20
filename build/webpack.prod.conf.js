@@ -10,10 +10,22 @@ var HtmlStringReplace = require('html-string-replace-webpack-plugin');
 var ZipPlugin = require('zip-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var webpackConfig = merge(baseWebpackConfig, {
-  // module: {
-  //   loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
-  // },
+  module: {
+    loaders: utils.styleLoaders({ sourceMap: buildConfig.build.productionSourceMap, extract: true })
+  },
   devtool: buildConfig.build.productionSourceMap ? '#source-map' : false,
+  entry: {
+    app: APP_FILE,
+    common: [
+      "react",
+      'react-dom',
+      'react-router',
+      'redux',
+      'react-redux',
+      'redux-thunk',
+      'immutable'
+    ]
+  },
   output: {
     path: buildConfig.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
@@ -26,40 +38,33 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.ProvidePlugin({//注册全局服务
       '$configGlobal': path.resolve(__dirname, '../config/configGlobal.js'),//configGlobal
     }),
-    new CopyWebpackPlugin([
-      { from:path.join(__dirname, '../CubeModule.json'), to: path.join(__dirname, '../dist/CubeModule.json') },
-    ]),
-  new webpack.ProvidePlugin({//全局服务注册
-      '$configGlobal': path.resolve(__dirname, '../config/configGlobal.js'),
-      //'$common': path.resolve(__dirname, '../src/js/service/common.js'),
-  }),
-  new webpack.DefinePlugin({
+    new webpack.DefinePlugin({
       'process.env': {
-          NODE_ENV: JSON.stringify('production') //定义生产环境
+        NODE_ENV: JSON.stringify('production') //定义生产环境
       }
-  }),
-  new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
-      filename: 'index.html', //生成的html存放路径，相对于 path
-      template: 'index.html', //html模板路径
+    }),
+    new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
+      filename: '../../index.html', //生成的html存放路径，相对于 path
+      template: '../src/template/index.html', //html模板路径
       inject: 'body',
       hash: true,
-  }),
-  new ExtractTextPlugin('[name].css'),
-  //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
-  new webpack.optimize.CommonsChunkPlugin("common", "common.bundle.js"),
-  new webpack.optimize.UglifyJsPlugin({
+    }),
+    new ExtractTextPlugin('[name].css'),
+    //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
+    new webpack.optimize.CommonsChunkPlugin("common", "common.bundle.js"),
+    new webpack.optimize.UglifyJsPlugin({
       output: {
-          comments: false, // remove all comments
+        comments: false, // remove all comments
       },
       compress: {
-          warnings: false
+        warnings: false
       }
-  }),
-  new ZipPlugin({//生成zip文件包
+    }),
+    new ZipPlugin({//生成zip文件包
       path: path.join(__dirname, '../'),
       filename: buildConfig.buildTest.zipName,
-  })
-  ]
+    })
+  ],
 })
 
 if (buildConfig.build.productionGzip) {

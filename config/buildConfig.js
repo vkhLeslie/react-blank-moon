@@ -51,7 +51,7 @@ module.exports = {
   },
   dev: {
     env: 'development',
-    port: 8088,
+    port: 8080,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {

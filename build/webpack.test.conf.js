@@ -9,10 +9,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlStringReplace = require('html-string-replace-webpack-plugin');
 var ZipPlugin = require('zip-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var webpackConfig = merge(baseWebpackConfig, {
-  // module: {
-  //   loaders: utils.styleLoaders({ sourceMap: config.buildTest.productionSourceMap, extract: true })
-  // },
+  module: {
+    loaders: utils.styleLoaders({ sourceMap: buildConfig.buildTest.productionSourceMap, extract: true })
+  },
   devtool: buildConfig.buildTest.productionSourceMap ? '#source-map' : false,
   output: {
     path: buildConfig.buildTest.assetsRoot,
@@ -20,12 +21,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: path.join(__dirname, '../CubeModule.json'), to: path.join(__dirname, '../dist/CubeModule.json') },
-    ]),
-    new webpack.ProvidePlugin({//注册全局服务
-      '$configGlobal': path.resolve(__dirname, '../config/configGlobal.js'),//configGlobal
-    }),
     new CopyWebpackPlugin([
       { from:path.join(__dirname, '../CubeModule.json'), to: path.join(__dirname, '../dist/CubeModule.json') },
     ]),
@@ -59,7 +54,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       path: path.join(__dirname, '../'),
       filename: buildConfig.buildTest.zipName,
   }),
-  ]
+  ],
 })
 
 if (buildConfig.buildTest.productionGzip) {

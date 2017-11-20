@@ -1,4 +1,6 @@
 build/*.js
+buildTest/*.js
 config/*.js
+dist/
 src/assets/fonts/*.js
 src/

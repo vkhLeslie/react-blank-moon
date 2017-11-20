@@ -1,6 +1,7 @@
 var path = require('path');//路径
 var buildConfig = require('../config/buildConfig');//打包配置
 var webpack = require('webpack');
+var utils = require('./utils');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 var ZipPlugin = require('zip-webpack-plugin');//生成zip文件包
@@ -17,16 +18,22 @@ const webpackConfig = {
         app: APP_FILE
     },
     output: {
-        publicPath: '../dist/', //编译好的文件，在服务器的路径,这是静态资源引用路径
-        path: BUILD_PATH, //编译到当前目录
-        filename: '[name].js', //编译后的文件名字
+        path: buildConfig.build.assetsRoot, //编译到当前目录
+        publicPath: process.env.NODE_ENV === 'production' ? buildConfig.build.assetsPublicPath : buildConfig.dev.assetsPublicPath,
+        filename: '[name].js',
         chunkFilename: '[name].[chunkhash:5].min.js',
     },
+    // output: {
+    //     publicPath: '../dist/', //编译好的文件，在服务器的路径,这是静态资源引用路径
+    //     path: BUILD_PATH, //编译到当前目录
+    //     filename: '[name].js', //编译后的文件名字
+    //     chunkFilename: '[name].[chunkhash:5].min.js',
+    // },
     module: {
         loaders: [{
             test: /\.js$/,
             exclude: /^node_modules$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             include: [APP_PATH]
         }, {
             test: /\.css$/,
@@ -54,7 +61,25 @@ const webpackConfig = {
             loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]',
             //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
             include: [APP_PATH]
-        },{//代码检查
+        },
+        {
+            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            loader: 'url',
+            query: {
+              limit: 10000,
+              // name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+              name: utils.assetsPath('font/[name].[ext]')
+            }
+          },
+          {
+            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            loader: 'url',
+            query: {
+              limit: 10000,
+              name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            }
+          },
+        {
             test: /\.jsx?$/,
             exclude: /node_modules/,
             loader: 'react-hot!babel'
@@ -67,7 +92,7 @@ const webpackConfig = {
          {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
-            loaders: ['jsx', 'babel'],
+            loaders: ['jsx', 'babel-loader'],
             include: [APP_PATH]
         }]
     },
