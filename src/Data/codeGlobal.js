@@ -1,6 +1,6 @@
 /**
  * @description:前端自定义提示码
- * @author：xingwu.chen@partner.midea.com
+ * @author：912751280@qq.com
  * @update:2017-08-16
  * @version
  */

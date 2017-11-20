@@ -1,7 +1,6 @@
 
 import * as config from './Config';
 
-const {target} = config;
 export const Tool = {};
 
 Tool.paramType = data => {

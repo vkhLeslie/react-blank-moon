@@ -1,7 +1,7 @@
 
 /**
  * @description:路由配置
- * @author：xingwu.chen@partner.midea.com
+ * @author：912751280@qq.com
  * @update:2017-11-18
  * @version
  */ 

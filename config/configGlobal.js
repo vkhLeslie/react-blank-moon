@@ -31,6 +31,6 @@ const CONFIG = {
     // 默认使用的语言
     DEFAULT_LANGUAGE: 'cn',
     MODULES_PATH: '',
-    PROJECT_NAME: 'it5000service' // 应用模块标识
+    PROJECT_NAME: 'moon' // 应用模块标识
 }
 export default CONFIG

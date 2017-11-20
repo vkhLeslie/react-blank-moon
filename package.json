@@ -8,7 +8,8 @@
     "build": "node build/build.js",
     "build-test": "node build/build-test.js",
     "dist": "webpack --config build/webpack.config.dist.js --progress --colors --watch -p",
-    "eslint": "eslint --ext .js src"
+    "lint": "eslint --ext .js,.jsx src",
+    "eslint": "eslint --fix  ./src/* "
   },
   "pre-commit": [
     "eslint"
