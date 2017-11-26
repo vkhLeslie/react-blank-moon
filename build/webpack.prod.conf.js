@@ -10,20 +10,24 @@ var HtmlStringReplace = require('html-string-replace-webpack-plugin');
 var ZipPlugin = require('zip-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+var ROOT_PATH = path.resolve(__dirname);//使用__dirname变量获取当前模块文件所在目录的完整绝对路径。
+var APP_PATH = path.resolve(ROOT_PATH, '../src'); //__dirname 中的src目录，以此类推
+var APP_FILE = path.resolve(APP_PATH, 'App.jsx'); //根目录文件app.jsx地址
+
 var webpackConfig = merge(baseWebpackConfig, {
   devtool: buildConfig.build.productionSourceMap ? '#source-map' : false,
-  // entry: {
-  //   app: APP_FILE,
-  //   common: [
-  //     "react",
-  //     'react-dom',
-  //     'react-router',
-  //     'redux',
-  //     'react-redux',
-  //     'redux-thunk',
-  //     'immutable'
-  //   ]
-  // },
+  entry: {
+    app: APP_FILE,
+    common: [
+      "react",
+      'react-dom',
+      'react-router',
+      'redux',
+      'react-redux',
+      'redux-thunk',
+      'immutable'
+    ]
+  },
   output: {
     path: buildConfig.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),

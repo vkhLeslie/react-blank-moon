@@ -5,8 +5,8 @@ var path = require('path');
 var buildConfig = require('../config/buildConfig');//打包配置
 var ora = require('ora');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.dev.conf');
-// env.NODE_ENV = 'production';
+var webpackConfig = require('./webpack.test.conf')
+env.NODE_ENV = 'production';
 
 console.log(
   '  Tip:\n' +
