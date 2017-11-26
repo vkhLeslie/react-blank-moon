@@ -1,6 +1,6 @@
 require('./check-versions')()
 var buildConfig = require('../config/buildConfig');//打包配置
-// if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(buildConfig.dev.env.NODE_ENV);
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
