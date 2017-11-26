@@ -1,21 +1,21 @@
 require('./check-versions')()
 var buildConfig = require('../config/buildConfig');//打包配置
 // if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var opn = require('opn')
-var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev.conf')
+var path = require('path');
+var express = require('express');
+var webpack = require('webpack');
+var opn = require('opn');
+var proxyMiddleware = require('http-proxy-middleware');
+var webpackConfig = require('./webpack.dev.conf');
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || buildConfig.dev.port
+var port = process.env.PORT || buildConfig.dev.port;
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-var proxyTable = buildConfig.dev.proxyTable
+var proxyTable = buildConfig.dev.proxyTable;
 
-var app = express()
-var compiler = webpack(webpackConfig)
+var app = express();
+var compiler = webpack(webpackConfig);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -61,11 +61,6 @@ var uri = 'http://localhost:' + port
 devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
-
-//将其他路由，全部返回index.html
-app.get('*', function(req, res) {
-	res.sendFile(__dirname + '../index.html')
-});
 
 
 module.exports = app.listen(port, function (err) {

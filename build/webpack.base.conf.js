@@ -30,12 +30,39 @@ const webpackConfig = {
     //     chunkFilename: '[name].[chunkhash:5].min.js',
     // },
     module: {
-        loaders: [{
+        loaders: [
+            {
             test: /\.js$/,
             exclude: /^node_modules$/,
             loader: 'babel-loader',
             include: [APP_PATH]
-        }, {
+        },
+        // {
+        //     test: /\.js$/,
+        //     exclude: [/(node_modules)/],
+        //     use: [
+        //         {
+        //             loader: 'react-hot-loader'
+        //         },
+        //         {
+        //             loader: 'babel-loader',
+        //             options: {
+        //                 presets: ['react', 'es2015', 'stage-0'],
+        //                 plugins: [
+        //                     'transform-class-properties',
+        //                     'transform-decorators-legacy'
+        //                 ]
+        //            }
+        //         }
+        //     ]
+        // },
+        // {
+        //     test: /\.js$/,
+        //     exclude: /^node_modules$/,
+        //     loaders: ['react-hot', 'babel'],
+        //     include: [APP_PATH]
+        // },
+         {
             test: /\.css$/,
             exclude: /^node_modules$/,
             loader: ExtractTextPlugin.extract('style', ['css', 'autoprefixer']),
@@ -79,22 +106,29 @@ const webpackConfig = {
               name: utils.assetsPath('img/[name].[hash:7].[ext]')
             }
           },
-        {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'react-hot!babel'
-          },
           {//代码检查
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'eslint-loader'
           },
+        //   {
+        //     test: /\.jsx?$/,
+        //     exclude: /node_modules/,
+        //     loader: 'react-hot!babel'
+        //   },
          {
             test: /\.jsx$/,
             exclude: /^node_modules$/,
             loaders: ['jsx', 'babel-loader'],
             include: [APP_PATH]
-        }]
+        },
+        // {
+        //     test: /\.jsx$/,
+        //     exclude: /^node_modules$/,
+        //     loaders: ['react-hot', 'jsx', 'babel'],
+        //     include: [APP_PATH]
+        // }
+      ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全

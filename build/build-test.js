@@ -1,13 +1,12 @@
 // https://github.com/shelljs/shelljs
-require('./check-versions')()
-require('shelljs/global')
-env.NODE_ENV = 'production'
-
-var path = require('path')
+require('./check-versions')();
+require('shelljs/global');
+var path = require('path');
 var buildConfig = require('../config/buildConfig');//打包配置
-var ora = require('ora')
-var webpack = require('webpack')
-var webpackConfig = require('./webpack.dev.conf')
+var ora = require('ora');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.dev.conf');
+// env.NODE_ENV = 'production';
 
 console.log(
   '  Tip:\n' +
@@ -15,10 +14,10 @@ console.log(
   '  Opening index.html over file:// won\'t work.\n'
 )
 
-var spinner = ora('building for production...')
-spinner.start()
+var spinner = ora('building for production...');
+spinner.start();
 
-var assetsPath = path.join(buildConfig.buildTest.assetsRoot, buildConfig.buildTest.assetsSubDirectory)
+var assetsPath = path.join(buildConfig.buildTest.assetsRoot, buildConfig.buildTest.assetsSubDirectory);
 rm('-rf', assetsPath)
 rm('-rf', '*.zip', path.resolve(__dirname, '../*.zip'))
 mkdir('-p', assetsPath)

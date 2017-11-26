@@ -7,15 +7,13 @@ var baseWebpackConfig = require('./webpack.base.conf');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var FriendlyErrors = require('friendly-errors-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
-// add hot-reload related code to entry chunks
+// add hot-reload related code to entry chunks 热更新编译
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
 
 module.exports = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: buildConfig.dev.cssSourceMap })
-  },
+ 
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   plugins: [
@@ -23,6 +21,8 @@ module.exports = merge(baseWebpackConfig, {
       '$configGlobal': path.resolve(__dirname, '../config/configGlobal.js'),//configGlobal
     }),
     new webpack.DefinePlugin({ //定义编译环境
+       //process.argv：当前进程的命令行参数数组。
+      //process.env：指向当前shell的环境变量，比如process.env.HOME。
       'process.env': buildConfig.dev.env
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
@@ -31,8 +31,8 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({//根据模板插入css/js等生成最终HTML
-      filename: '../../index.html', //生成的html存放路径，相对于 path
-      template: '../src/template/index.html', //html模板路径
+      filename: 'index.html', //生成的html存放路径，相对于 path
+      // template: '../src/template/index.html', //html模板路径
       inject: true
     }),
     new ExtractTextPlugin('[name].css'),

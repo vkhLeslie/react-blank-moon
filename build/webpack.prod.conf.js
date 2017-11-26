@@ -9,23 +9,21 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlStringReplace = require('html-string-replace-webpack-plugin');
 var ZipPlugin = require('zip-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var webpackConfig = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: buildConfig.build.productionSourceMap, extract: true })
-  },
   devtool: buildConfig.build.productionSourceMap ? '#source-map' : false,
-  entry: {
-    app: APP_FILE,
-    common: [
-      "react",
-      'react-dom',
-      'react-router',
-      'redux',
-      'react-redux',
-      'redux-thunk',
-      'immutable'
-    ]
-  },
+  // entry: {
+  //   app: APP_FILE,
+  //   common: [
+  //     "react",
+  //     'react-dom',
+  //     'react-router',
+  //     'redux',
+  //     'react-redux',
+  //     'redux-thunk',
+  //     'immutable'
+  //   ]
+  // },
   output: {
     path: buildConfig.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
@@ -44,10 +42,19 @@ var webpackConfig = merge(baseWebpackConfig, {
       }
     }),
     new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
-      filename: '../../index.html', //生成的html存放路径，相对于 path
-      template: '../src/template/index.html', //html模板路径
+      filename: buildConfig.build.index, //生成的html存放路径，相对于 path
+      template: 'index.html', //html模板路径
       inject: 'body',
       hash: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
     }),
     new ExtractTextPlugin('[name].css'),
     //提取出来的样式和common.js会自动添加进发布模式的html文件中，原来的html没有
@@ -62,7 +69,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new ZipPlugin({//生成zip文件包
       path: path.join(__dirname, '../'),
-      filename: buildConfig.buildTest.zipName,
+      filename: buildConfig.build.zipName,
     })
   ],
 })

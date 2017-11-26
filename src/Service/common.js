@@ -39,7 +39,7 @@ var Rxports = {
             if (!name) return;
             window.localStorage.removeItem(name);
         },
-        /**
+   /**
     * 是否对象
     * @static
     * @param {*} value 值

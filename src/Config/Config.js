@@ -34,6 +34,5 @@ const system = (() => {
   return system
 })()
 
-export {
-  system
-}
+export default system
+  

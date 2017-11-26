@@ -36,7 +36,7 @@ const receivePosts = (path, json) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
-    let url = URL[CONFIG.serviceType].baseUrl + path + Tool.paramType(postData);
+    let url = '';//URL[CONFIG.serviceType].baseUrl + path + Tool.paramType(postData);
     return dispatch => {
         dispatch(requestPosts(postData));
         return fetch(url,{
@@ -111,7 +111,7 @@ const getDataSuccess = (path, json, success, name) => {
 
 //手动调用获取数据的aciton
 export const getData = (path, postData, success, name) => {
-    let url = URL[CONFIG.serviceType].baseUrl + path + Tool.paramType(postData);
+    let url = '';//URL[CONFIG.serviceType].baseUrl + path + Tool.paramType(postData);
     return dispatch => {
         dispatch(getDataStart(postData))
         return fetch(url,{
