@@ -4,7 +4,7 @@
  * @update:2017-08-16
  * @version
  */
-
+import axios from 'axios';
 import fetch from 'isomorphic-fetch'
 import {URL} from '../../Data/URL'
 import {CONFIG} from '../../Data/config'
@@ -83,7 +83,7 @@ function request(url, params, option) {
       extend(config, {
         method: 'post'
       });
-      fetch(config).then(rep => {
+      axios(config).then(rep => {
         resolve(rep);
       }, error => {
         reject(error);
@@ -100,7 +100,7 @@ function request(url, params, option) {
       extend(config, {
         method: 'GET'
       });
-       fetch(config).then(rep => {
+      axios(config).then(rep => {
         resolve(rep);
       }, error => {
         reject(error);

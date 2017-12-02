@@ -17,6 +17,7 @@
   "author": "chenxingwu",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
     "github-markdown-css": "^2.4.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
